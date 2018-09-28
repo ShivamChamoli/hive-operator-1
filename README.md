@@ -1,0 +1,1 @@
+# Opertor for OpenShift Hive
