@@ -11,8 +11,6 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/util/yaml"
-	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/clientcmd"
 )
 
 func NewHandler() sdk.Handler {
@@ -21,13 +19,6 @@ func NewHandler() sdk.Handler {
 
 type Handler struct {
 	// Fill me
-}
-
-func GetClientConfig(kubeconfig string) (*rest.Config, error) {
-	if kubeconfig != "" {
-		return clientcmd.BuildConfigFromFlags("", kubeconfig)
-	}
-	return rest.InClusterConfig()
 }
 
 func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
