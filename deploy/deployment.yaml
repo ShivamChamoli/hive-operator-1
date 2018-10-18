@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hive-deployment
+  labels:
+    app: hive-operator
+  ownerReference:
+    - hive.openshift.io
+    - v1alpha1
+    - Hive
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hive-operator
+  template:
+    metadata:
+      labels:
+        app: hive-operator
+    spec:
+      containers:
+      - name: hive-operator
+        image: quay.io/dgoodwin/hive:latest
+        ports:
+        - containerPort: 80

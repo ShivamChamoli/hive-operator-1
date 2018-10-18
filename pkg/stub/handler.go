@@ -2,17 +2,17 @@ package stub
 
 import (
 	"context"
-	"fmt"
+	"io"
+	"os"
 
-	"github.com/openshift/hive-operator/pkg/apis/hive/v1alpha1"
-
+	"github.com/official-hive-operator/hive-operator-1/pkg/apis/hive/v1alpha1"
 	"github.com/operator-framework/operator-sdk/pkg/sdk"
 	"github.com/sirupsen/logrus"
 	appsv1 "k8s.io/api/apps/v1"
-	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/util/yaml"
+	"k8s.io/client-go/rest"
+	"k8s.io/client-go/tools/clientcmd"
 )
 
 func NewHandler() sdk.Handler {
@@ -21,6 +21,13 @@ func NewHandler() sdk.Handler {
 
 type Handler struct {
 	// Fill me
+}
+
+func GetClientConfig(kubeconfig string) (*rest.Config, error) {
+	if kubeconfig != "" {
+		return clientcmd.BuildConfigFromFlags("", kubeconfig)
+	}
+	return rest.InClusterConfig()
 }
 
 func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
@@ -33,14 +40,15 @@ func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
 			//create a deployment and then create
 			//a service, sanity check!!
 			logrus.Infof("event created/updated")
+			newHiveDeployment(o)
 			//create the deployment
-			dep := newHiveDeployment(o)
-			err := sdk.Create(dep)
+			//dep := newHiveDeployment(o)
+			/*err := sdk.Create(dep)
 			if err != nil && !errors.IsAlreadyExists(err) {
 				logrus.Errorf("Failed to create Deployment: %v", err)
 				return err
-			}
-			err = sdk.Get(dep)
+			}*/
+			/*err := sdk.Get(dep)
 			if err != nil {
 				return fmt.Errorf("failed to get deployment: %v", err)
 			}
@@ -52,7 +60,7 @@ func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
 				if err != nil {
 					return fmt.Errorf("failed to update deployment: %v", err)
 				}
-			}
+			}*/
 		}
 	}
 	return nil
@@ -60,7 +68,31 @@ func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
 
 //Deployment with 3 replicas
 func newHiveDeployment(cr *v1alpha1.Hive) *appsv1.Deployment {
-	labels := map[string]string{
+	var u appsv1.Deployment
+	f, err := os.Open("deploy/deployment.yaml")
+	if err != nil {
+		panic(err.Error())
+	}
+	decoder := yaml.NewYAMLOrJSONDecoder(f, 65536)
+	for {
+		logrus.Infof("Inside creation of deployment")
+		u := appsv1.Deployment{}
+		err = decoder.Decode(&u)
+		if err == io.EOF {
+			break
+		}
+		if err != nil && err != io.EOF {
+			panic(err.Error())
+		}
+		u.SetNamespace(cr.Namespace)
+		err = sdk.Create(&u)
+		if err != nil && !errors.IsAlreadyExists(err) {
+			logrus.Errorf("Failed to create deployment.yaml: %v", err)
+		}
+	}
+	logrus.Infof("Outside creation of deployment")
+	return &u
+	/*labels := map[string]string{
 		"app": "hive-operator",
 	}
 	replicas := cr.Spec.Size
@@ -94,11 +126,11 @@ func newHiveDeployment(cr *v1alpha1.Hive) *appsv1.Deployment {
 				},
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
-						Image: "luksa/kubia:v2",
+						Image: "quay.io/dgoodwin/hive:latest",
 						Name:  "hive-operator",
 					}},
 				},
 			},
 		},
-	}
+	}*/
 }
