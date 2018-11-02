@@ -4,13 +4,13 @@ import (
 	"context"
 	"runtime"
 
-	"github.com/openshift/machine-config-operator/lib/resourceapply"
 	assets "github.com/openshift/hive-operator/pkg/bindata"
+	"github.com/openshift/machine-config-operator/lib/resourceapply"
 
-	"github.com/openshift/hive-operator/lib/resourceread"
 	"github.com/openshift/hive-operator/pkg/stub"
+	"github.com/openshift/machine-config-operator/lib/resourceread"
+	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	"github.com/operator-framework/operator-sdk/pkg/sdk"
-	"github.com/operator-framework/operator-sdk/pkg/util/k8sutil"
 	sdkVersion "github.com/operator-framework/operator-sdk/version"
 	apiextclientset "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 
@@ -27,7 +27,7 @@ func printVersion() {
 
 func main() {
 	printVersion()
-	
+
 	resource := "hive.openshift.io/v1alpha1"
 	kind := "Hive"
 	namespace, err := k8sutil.GetWatchNamespace()
@@ -55,7 +55,6 @@ func main() {
 		}
 	}*/
 
-	
 	//code for parsing a CRD and registering it to the kubernetes api
 	/*f, err := os.Open("deploy/cluster-deployment.yaml")
 	if err != nil {

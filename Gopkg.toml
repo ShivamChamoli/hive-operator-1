@@ -14,28 +14,24 @@ required = [
 
 [[override]]
   name = "k8s.io/code-generator"
-  # revision for tag "kubernetes-1.9.3"
-  version = "kubernetes-1.11.1"
+  version = "kubernetes-1.11.2"
 
 [[override]]
   name = "k8s.io/api"
-  # revision for tag "kubernetes-1.9.3"
-  version = "kubernetes-1.11.1"
+  version = "kubernetes-1.11.2"
 
 [[override]]
   name = "k8s.io/apimachinery"
-  # revision for tag "kubernetes-1.9.3"
-  version = "kubernetes-1.11.1"
+  version = "kubernetes-1.11.2"
 
 [[override]]
   name = "k8s.io/client-go"
-  # revision for tag "kubernetes-1.9.3"
-  version = "kubernetes-1.11.1"
+  version = "kubernetes-1.11.2"
 
 [[constraint]]
   name = "github.com/operator-framework/operator-sdk"
   # The version rule is used for a specific release and the master branch for in between releases.
-  branch = "master"
-  #version = "=v0.1.0"
+  #branch = "master"
+  version = "=v0.1.0"
 
 
