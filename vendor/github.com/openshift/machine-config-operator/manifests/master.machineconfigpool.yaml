@@ -1,0 +1,11 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  name: master
+spec:
+  machineConfigSelector:
+    matchLabels:
+      "machineconfiguration.openshift.io/role": "master"
+  machineSelector:
+    matchLabels:
+      node-role.kubernetes.io/master: ""

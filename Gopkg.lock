@@ -14,10 +14,51 @@
   revision = "de5bf2ad457846296e2031421a34e2568e304e35"
 
 [[projects]]
+  branch = "go15"
+  name = "github.com/ajeddeloh/go-json"
+  packages = ["."]
+  revision = "6a2fe990e08303c82d966297ddb29a58678a4783"
+
+[[projects]]
   branch = "master"
   name = "github.com/beorn7/perks"
   packages = ["quantile"]
   revision = "3a771d992973f24aa725d07868b467d1ddfceafb"
+
+[[projects]]
+  name = "github.com/coreos/go-semver"
+  packages = ["semver"]
+  revision = "8ab6407b697782a06568d4b7f1db25550ec2e4c6"
+  version = "v0.2.0"
+
+[[projects]]
+  name = "github.com/coreos/go-systemd"
+  packages = ["unit"]
+  revision = "39ca1b05acc7ad1220e09f133283b8859a8b71ab"
+  version = "v17"
+
+[[projects]]
+  name = "github.com/coreos/ignition"
+  packages = [
+    "config/shared/errors",
+    "config/shared/validations",
+    "config/util",
+    "config/v1",
+    "config/v1/types",
+    "config/v2_0",
+    "config/v2_0/types",
+    "config/v2_1",
+    "config/v2_1/types",
+    "config/v2_2",
+    "config/v2_2/types",
+    "config/v2_3_experimental/types",
+    "config/validate",
+    "config/validate/astjson",
+    "config/validate/astnode",
+    "config/validate/report"
+  ]
+  revision = "76107251acd117c6d3e5b4dae2b47f82f944984b"
+  version = "v0.26.0"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
@@ -132,12 +173,6 @@
   version = "v0.5.0"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/howeyc/gopass"
-  packages = ["."]
-  revision = "bf9dde6d0d2c004a008c27aaee91170c786f6db8"
-
-[[projects]]
   name = "github.com/imdario/mergo"
   packages = ["."]
   revision = "9f23e2d6bd2a77f959b2bf6acdbefd708a83a4a4"
@@ -148,12 +183,6 @@
   packages = ["."]
   revision = "1624edc4454b8682399def8740d46db5e4362ba4"
   version = "v1.1.5"
-
-[[projects]]
-  name = "github.com/juju/ratelimit"
-  packages = ["."]
-  revision = "59fac5042749a5afb9af70e813da1dd5474f0167"
-  version = "1.0.1"
 
 [[projects]]
   branch = "master"
@@ -182,6 +211,38 @@
   packages = ["."]
   revision = "4b7aa43c6742a2c18fdef89dd197aaae7dac7ccd"
   version = "1.0.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/openshift/api"
+  packages = ["security/v1"]
+  revision = "fac417a1916188eb39f7c36e279c832ce1c965df"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/openshift/client-go"
+  packages = [
+    "security/clientset/versioned/scheme",
+    "security/clientset/versioned/typed/security/v1"
+  ]
+  revision = "1b58207b6bc4e3f3001dc2769483d65fd77675ea"
+
+[[projects]]
+  name = "github.com/openshift/machine-config-operator"
+  packages = [
+    "lib/resourceapply",
+    "lib/resourcemerge",
+    "pkg/apis",
+    "pkg/apis/machineconfiguration.openshift.io/v1",
+    "pkg/generated/clientset/versioned",
+    "pkg/generated/clientset/versioned/fake",
+    "pkg/generated/clientset/versioned/scheme",
+    "pkg/generated/clientset/versioned/typed/machineconfiguration.openshift.io/v1",
+    "pkg/generated/clientset/versioned/typed/machineconfiguration.openshift.io/v1/fake",
+    "pkg/operator/assets"
+  ]
+  revision = "7efcbbbcada2af39a505c7a0305c7b32acec0af3"
+  version = "v3.11.0"
 
 [[projects]]
   branch = "master"
@@ -257,6 +318,18 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/vincent-petithory/dataurl"
+  packages = ["."]
+  revision = "9a301d65acbb728fcc3ace14f45f511a4cfeea9c"
+
+[[projects]]
+  branch = "master"
+  name = "go4.org"
+  packages = ["errorutil"]
+  revision = "417644f6feb5ed3a356ca5d6d8e3a3fac7dfd33f"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
   revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
@@ -303,6 +376,12 @@
   ]
   revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
   version = "v0.3.0"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/time"
+  packages = ["rate"]
+  revision = "fbb02b2291d28baffd63558aa44b4b56f178d650"
 
 [[projects]]
   branch = "master"
@@ -353,23 +432,38 @@
     "rbac/v1alpha1",
     "rbac/v1beta1",
     "scheduling/v1alpha1",
+    "scheduling/v1beta1",
     "settings/v1alpha1",
     "storage/v1",
     "storage/v1alpha1",
     "storage/v1beta1"
   ]
-  revision = "acf347b865f29325eb61f4cd2df11e86e073a5ee"
+  revision = "2d6f90ab1293a1fb871cf149423ebb72aa7423aa"
+  version = "kubernetes-1.11.1"
+
+[[projects]]
+  name = "k8s.io/apiextensions-apiserver"
+  packages = [
+    "pkg/apis/apiextensions",
+    "pkg/apis/apiextensions/v1beta1",
+    "pkg/client/clientset/clientset",
+    "pkg/client/clientset/clientset/scheme",
+    "pkg/client/clientset/clientset/typed/apiextensions/v1beta1"
+  ]
+  revision = "06dfdaae5c2bd89e1243151ff65b9bf8ee050f28"
+  version = "kubernetes-1.11.1"
 
 [[projects]]
   name = "k8s.io/apimachinery"
   packages = [
+    "pkg/api/equality",
     "pkg/api/errors",
     "pkg/api/meta",
     "pkg/api/resource",
     "pkg/apis/meta/internalversion",
     "pkg/apis/meta/v1",
     "pkg/apis/meta/v1/unstructured",
-    "pkg/apis/meta/v1alpha1",
+    "pkg/apis/meta/v1beta1",
     "pkg/conversion",
     "pkg/conversion/queryparams",
     "pkg/fields",
@@ -391,24 +485,29 @@
     "pkg/util/framer",
     "pkg/util/intstr",
     "pkg/util/json",
+    "pkg/util/mergepatch",
     "pkg/util/net",
     "pkg/util/runtime",
     "pkg/util/sets",
+    "pkg/util/strategicpatch",
     "pkg/util/validation",
     "pkg/util/validation/field",
     "pkg/util/wait",
     "pkg/util/yaml",
     "pkg/version",
     "pkg/watch",
+    "third_party/forked/golang/json",
     "third_party/forked/golang/reflect"
   ]
-  revision = "19e3f5aa3adca672c153d324e6b7d82ff8935f03"
+  revision = "103fd098999dc9c0c88536f5c9ad2e5da39373ae"
+  version = "kubernetes-1.11.0"
 
 [[projects]]
   name = "k8s.io/client-go"
   packages = [
     "discovery",
     "discovery/cached",
+    "discovery/fake",
     "dynamic",
     "kubernetes",
     "kubernetes/scheme",
@@ -436,13 +535,19 @@
     "kubernetes/typed/rbac/v1alpha1",
     "kubernetes/typed/rbac/v1beta1",
     "kubernetes/typed/scheduling/v1alpha1",
+    "kubernetes/typed/scheduling/v1beta1",
     "kubernetes/typed/settings/v1alpha1",
     "kubernetes/typed/storage/v1",
     "kubernetes/typed/storage/v1alpha1",
     "kubernetes/typed/storage/v1beta1",
+    "pkg/apis/clientauthentication",
+    "pkg/apis/clientauthentication/v1alpha1",
+    "pkg/apis/clientauthentication/v1beta1",
     "pkg/version",
+    "plugin/pkg/client/auth/exec",
     "rest",
     "rest/watch",
+    "testing",
     "tools/auth",
     "tools/cache",
     "tools/clientcmd",
@@ -455,12 +560,15 @@
     "transport",
     "util/buffer",
     "util/cert",
+    "util/connrotation",
     "util/flowcontrol",
     "util/homedir",
     "util/integer",
+    "util/retry",
     "util/workqueue"
   ]
-  revision = "9389c055a838d4f208b699b3c7c51b70f2368861"
+  revision = "59698c7d9724b0f95f9dc9e7f7dfdcc3dfeceb82"
+  version = "kubernetes-1.11.1"
 
 [[projects]]
   name = "k8s.io/code-generator"
@@ -474,16 +582,24 @@
     "cmd/client-gen/path",
     "cmd/client-gen/types",
     "cmd/conversion-gen",
+    "cmd/conversion-gen/args",
     "cmd/conversion-gen/generators",
     "cmd/deepcopy-gen",
+    "cmd/deepcopy-gen/args",
     "cmd/defaulter-gen",
+    "cmd/defaulter-gen/args",
     "cmd/informer-gen",
+    "cmd/informer-gen/args",
     "cmd/informer-gen/generators",
     "cmd/lister-gen",
+    "cmd/lister-gen/args",
     "cmd/lister-gen/generators",
-    "cmd/openapi-gen"
+    "cmd/openapi-gen",
+    "cmd/openapi-gen/args",
+    "pkg/util"
   ]
-  revision = "91d3f6a57905178524105a085085901bb73bd3dc"
+  revision = "6702109cc68eb6fe6350b83e14407c8d7309fd1a"
+  version = "kubernetes-1.11.0"
 
 [[projects]]
   branch = "master"
@@ -508,6 +624,7 @@
     "pkg/common",
     "pkg/generators",
     "pkg/generators/rules",
+    "pkg/util/proto",
     "pkg/util/sets"
   ]
   revision = "e3762e86a74c878ffed47484592986685639c2cd"
@@ -515,6 +632,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ecd2e1d13a38e943f4705a5b804ae00256c7f741f0eb49211cc498d71278059c"
+  inputs-digest = "7a01749cb73afd77c417c18b18708d56ccd980f5b7a32bc52ab75531d3b4e55e"
   solver-name = "gps-cdcl"
   solver-version = 1
