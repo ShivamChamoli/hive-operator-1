@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/official-hive-operator/hive-operator-1/pkg/apis/hive/v1alpha1"
+	"github.com/openshift/hive-operator/pkg/apis/hive/v1alpha1"
 	"github.com/operator-framework/operator-sdk/pkg/sdk"
 	"github.com/sirupsen/logrus"
 	appsv1 "k8s.io/api/apps/v1"

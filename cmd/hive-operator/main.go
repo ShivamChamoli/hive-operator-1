@@ -5,10 +5,10 @@ import (
 	"runtime"
 
 	"github.com/openshift/machine-config-operator/lib/resourceapply"
-	"github.com/openshift/machine-config-operator/pkg/operator/assets"
+	assets "github.com/openshift/hive-operator/pkg/bindata"
 
-	"github.com/official-hive-operator/hive-operator-1/lib/resourceread"
-	"github.com/official-hive-operator/hive-operator-1/pkg/stub"
+	"github.com/openshift/hive-operator/lib/resourceread"
+	"github.com/openshift/hive-operator/pkg/stub"
 	"github.com/operator-framework/operator-sdk/pkg/sdk"
 	"github.com/operator-framework/operator-sdk/pkg/util/k8sutil"
 	sdkVersion "github.com/operator-framework/operator-sdk/version"
