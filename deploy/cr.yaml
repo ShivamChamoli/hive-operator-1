@@ -1,6 +1,0 @@
-apiVersion: "hive.openshift.io/v1alpha1"
-kind: "Hive"
-metadata:
-  name: "example"
-spec:
-  size: 3
