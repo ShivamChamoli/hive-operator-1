@@ -1,0 +1,7 @@
+apiVersion: hive.openshift.io/v1alpha1
+kind: Hive
+metadata:
+  name: example-hive
+spec:
+  # Add fields here
+  size: 3
