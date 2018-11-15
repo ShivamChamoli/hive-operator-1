@@ -11,6 +11,8 @@ import (
 type HiveSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	Image string `json:"image"`
+	Size  int32  `json:"size"`
 }
 
 // HiveStatus defines the observed state of Hive

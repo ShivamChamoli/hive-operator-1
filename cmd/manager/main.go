@@ -5,8 +5,8 @@ import (
 	"log"
 	"runtime"
 
-	"github.com/new-sdk/hive-operator/pkg/apis"
-	"github.com/new-sdk/hive-operator/pkg/controller"
+	"github.com/openshift/hive-operator/pkg/apis"
+	"github.com/openshift/hive-operator/pkg/controller"
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	sdkVersion "github.com/operator-framework/operator-sdk/version"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
@@ -49,6 +49,29 @@ func main() {
 		log.Fatal(err)
 	}
 
+	//Changes to register cluster-deployment CRD
+	/*clusterDeploymentBytes, err := assets.Asset("deploy/crds/hive_v1alpha1_hive_cr.yaml")
+	if err != nil {
+		log.Fatal("Failed to get watch asset: %v", err)
+	}
+	clusterDeploymentCRD := resourceread.ReadCustomResourceDefinitionV1Beta1OrDie(clusterDeploymentBytes)
+
+	resourceClient, _, err := k8sclient.GetResourceClient("v1alpha1", "hive", namespace)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//c := config.GetConfig()
+
+	_, updated, err := resourceapply.ApplyCustomResourceDefinition(
+		resourceClient , clusterDeploymentCRD)
+	if err != nil {
+		log.Fatal("Failed to get register cluster deployment to kubernetes: %v", err)
+	}
+
+	log.Printf("Created cluster-deployment: %s", updated)*/
+
+
 	// Setup all Controllers
 	if err := controller.AddToManager(mgr); err != nil {
 		log.Fatal(err)
@@ -58,4 +81,25 @@ func main() {
 
 	// Start the Cmd
 	log.Fatal(mgr.Start(signals.SetupSignalHandler()))
+	//creating cluster-deployment.yaml
+	/*f, err := os.Open("deploy/cluster-deployment.yaml")
+	if err != nil {
+		panic(err.Error())
+	}
+	decoder := yaml.NewYAMLOrJSONDecoder(f, 65536)
+	for {
+		u := v1beta1.CustomResourceDefinition{}
+		err = decoder.Decode(&u)
+		if err == io.EOF {
+			break
+		}
+		if err != nil && err != io.EOF {
+			panic(err.Error())
+		}
+		//u.SetNamespace(namespace)
+		err = sdk.Create(&u)
+		if err != nil && !errors.IsAlreadyExists(err) {
+			log.Fatal(err)
+		}
+	}*/
 }
